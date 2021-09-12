@@ -95,18 +95,19 @@ namespace sdsu {
                 storage = tempStorage;
             }
 
-            if (curSize == curCapacity) {
-                head = tail = 0;
-                storage[tail] = value;
-            }
-            else {
-                tail++;
-                tail = tail % 10;
-                storage[tail] = value;
-            }
+//            if (curSize == curCapacity) {
+//                head = tail = 0;
+//                storage[tail] = value;
+//            }
+//            else {
+//                tail++;
+//                tail = tail % 10;
+//                storage[tail] = value;
+//            }
+
+            storage[tail] = value;
             curSize++; //needed to include a size for the array
-
-
+            tail++;
             /*
             storage[tail] = t;
             tail++;
@@ -118,7 +119,7 @@ namespace sdsu {
                 }
             }
             */
-            return false;
+            return true;
         }
 
         bool isEmpty() const override {
