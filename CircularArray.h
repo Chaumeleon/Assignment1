@@ -133,25 +133,30 @@ namespace sdsu {
 
         bool addFirst(T t) override {
             // a well written insert method makes this a single line.
-            return false;
+            return insert(0,t);
         }
 
         bool addLast(T t) override {
             // a well written insert method makes this a single line.
-            return false;
+            return insert(tail,t);
         }
 
         T& get(int idx) override {
             // todo: we need idx range checking. In C++, this is dangerous.
-            throw std::out_of_range("CircularArray<T>::get(idx) : index out of range.");
-            return storage[idx];
+            if (head >= idx && idx <= tail) {
+                return storage[idx]; // come fix later
+            } else {
+                throw std::out_of_range("CircularArray<T>::get(idx) : index out of range.");
+            }
         }
 
         bool insert(int idx, T t) override {
             // if you figure out if you are closer to the head or tail, you can
             // minimize the amount of array manipulation you need to perform.
+            storage[idx] = t;
+            curSize++;
 
-            return false;
+            return true;
         }
 
         T remove(int i) override {
